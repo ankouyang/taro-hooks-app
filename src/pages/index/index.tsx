@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import { View } from "@tarojs/components";
-import { Cell,Image,TreeSelect,Rate ,Slider  } from "@taroify/core"
+import { Cell,Image,TreeSelect,Rate ,Slider,Field,Input } from "@taroify/core"
 import { ChatOutlined } from "@taroify/icons"
 
 import './index.scss'
@@ -8,6 +8,7 @@ import './index.scss'
 const Index = () => {
   const [tabValue, setTabValue] = useState(0)
   const [value, setValue] = useState(0)
+  const [text, setText] = useState("")
   return (
     <View className='wrapper'>
       <Cell title='单元格'>内容</Cell>
@@ -39,6 +40,9 @@ const Index = () => {
     <ChatOutlined size='40' />
     <Rate className='custom-color' defaultValue={3} allowHalf size={25}  />
     <Slider defaultValue={50} />
+    <Field label='文本'>
+        <Input placeholder='请输入文本' value={text} onChange={(e) => setText(e.detail.value)} />
+      </Field>
     </View>
   );
 };
