@@ -1,50 +1,49 @@
-import React,{useState} from "react";
+import React, {useState } from 'react';
+import { Cascader,Cell,Button } from '@antmjs/vantui'
 import { View } from "@tarojs/components";
-import { Cell,Image,TreeSelect,Rate ,Slider,Field,Input } from "@taroify/core"
-import { ChatOutlined } from "@taroify/icons"
+import { cityOptions } from  '@/utils/common'
 
-import './index.scss'
+export default () => {
+  const [isVisible, setIsVisible] = useState(false)
+  const [value1, setValue1] = useState([])
+  const [options, setoptions] = useState(cityOptions)
+  const change1 = (value, path) => {
+    console.log('onChange', value, path)
+    setValue1(value)
+  }
+  const onPathChange = (value, path) => {
+    console.log('onPathChange', value, path)
+  }
 
-const Index = () => {
-  const [tabValue, setTabValue] = useState(0)
-  const [value, setValue] = useState(0)
-  const [text, setText] = useState("")
   return (
-    <View className='wrapper'>
-      <Cell title='单元格'>内容</Cell>
-      <Image style={{ width: "100px", height: "100px" }} src='https://img.yzcdn.cn/vant/cat.jpeg' />
-      <TreeSelect tabValue={tabValue} value={value} onTabChange={setTabValue} onChange={setValue}>
-      <TreeSelect.Tab title='浙江'>
-        <TreeSelect.Option value={0}>杭州</TreeSelect.Option>
-        <TreeSelect.Option value={1}>温州</TreeSelect.Option>
-        <TreeSelect.Option value={2} disabled>
-          宁波
-        </TreeSelect.Option>
-        <TreeSelect.Option value={3}>义乌</TreeSelect.Option>
-      </TreeSelect.Tab>
-      <TreeSelect.Tab title='江苏'>
-        <TreeSelect.Option value={4}>南京</TreeSelect.Option>
-        <TreeSelect.Option value={5}>无锡</TreeSelect.Option>
-        <TreeSelect.Option value={6}>徐州</TreeSelect.Option>
-        <TreeSelect.Option value={7}>苏州</TreeSelect.Option>
-      </TreeSelect.Tab>
-      <TreeSelect.Tab title='福建' disabled>
-        <TreeSelect.Option value={8}>泉州</TreeSelect.Option>
-        <TreeSelect.Option value={9}>厦门</TreeSelect.Option>
-      </TreeSelect.Tab>
-    </TreeSelect>
-    <View className='taroify-ellipsis'>
-      这是一段最多显示两行的文字，多余的内容会被省略 这是一段最多显示两行的文字，
-      多余的内容会被省略这是一段最多显示两行的文字，多余的内容会被省略这是一段最多显示两行的文字
-    </View>
-    <ChatOutlined size='40' />
-    <Rate className='custom-color' defaultValue={3} allowHalf size={25}  />
-    <Slider defaultValue={50} />
-    <Field label='文本'>
-        <Input placeholder='请输入文本' value={text} onChange={(e) => setText(e.detail.value)} />
-      </Field>
-    </View>
-  );
+    <>
+      <Cell
+        title='选择地址'
+        value={value1 ? value1.join('-') : '请选择地址'}
+        onClick={() => {
+          console.log(options)
+          setIsVisible(true)
+        }}
+      ></Cell>
+      <View>
+         <Button type='default'>默认按钮</Button>
+         <Button type='primary'>主要按钮</Button>
+         <Button type='info'>信息按钮</Button>
+         <Button type='warning'>警告按钮</Button>
+         <Button type='danger'>危险按钮</Button>
+      </View>
+      <Cascader
+        visible={isVisible}
+        value={value1}
+        title='地址选择'
+        options={options}
+        closeable
+        onClose={() => {
+          setIsVisible(false)
+        }}
+        onChange={change1}
+        onPathChange={onPathChange}
+      />
+    </>
+  )
 };
-
-export default Index;
