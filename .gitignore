@@ -1,4 +1,13 @@
 dist/
+h5/
+rn/
+qq/
+weapp/
+alipay/
+swan/
+tt/
+jd/
+quickapp/
 deploy_versions/
 .temp/
 .rn_temp/

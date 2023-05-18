@@ -2,9 +2,13 @@ import { Component } from "react";
 import "./app.scss";
 
 class App extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+     console.log('第一次渲染之后执行，只执行一次')
+  }
 
-  componentDidShow() {}
+  componentDidShow() {
+    console.log('第一次卸载执行，只执行一次')
+  }
 
   componentDidHide() {}
 

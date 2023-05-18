@@ -2,6 +2,7 @@ import React, {useState } from 'react';
 import { Cascader,Cell,Button } from '@antmjs/vantui'
 import { View } from "@tarojs/components";
 import { cityOptions } from  '@/utils/common'
+import './index.scss'
 
 export default () => {
   const [isVisible, setIsVisible] = useState(false)

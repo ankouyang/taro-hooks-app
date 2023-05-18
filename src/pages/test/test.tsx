@@ -4,6 +4,7 @@ import {View}  from "@tarojs/components";
 
 export default () => {
   const [appInstance] = useApp(true);
+  
   const [show] = useModal({
     title: 'useApp',
     content: '您是否要随机修改当前全局变量',
@@ -19,7 +20,7 @@ export default () => {
   }, [show, appInstance]);
   return (
     <>
-       <View>你好</View>
+       <View>{ appInstance?.config?.window?.navigationBarTitleText}</View>
     </>
   );
 };
